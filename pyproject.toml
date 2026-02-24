@@ -1,0 +1,77 @@
+
+[project]
+name = "psychopy-docs"
+dynamic = ["version"]
+requires-python = ">=3.9, <3.12"
+description = "PsychoPy provides easy, precise, flexible experiments in behavioural sciences"
+readme ={file = "README.md", content-type = "text/markdown"}
+authors = [
+    {name = "Open Science Tools Ltd", email = "support@opensciencetools.org"},
+]
+maintainers = [
+    {name = "Open Science Tools Ltd", email = "support@opensciencetools.org"},
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Operating System :: MacOS :: MacOS X",
+    "Operating System :: Microsoft :: Windows",
+    "Operating System :: POSIX :: Linux",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Scientific/Engineering",
+    "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
+    ]
+    
+dependencies = [
+    "psychopy", # to inspect the API
+    # for doc building:
+    "sphinx",
+    "jinja2",
+    "sphinx-design",
+    "sphinx-copybutton",
+    "myst-parser",
+    "sphinxcontrib.svg2pdfconverter",  # requires inkscape
+    "psychopy-sphinx-theme",
+]
+
+[project.optional-dependencies]  # This is optional dependencies
+tests = [
+    "pytest>=6.2.5",
+    "pytest-codecov",
+    "pytest-cov",
+    "pytest-asyncio",
+    "flake8",
+    "xmlschema",
+]
+
+[project.urls]
+Homepage = "https://www.psychopy.org/"
+Download = "https://github.com/psychopy/psychopy/releases/"
+
+[build-system]
+requires = [
+    "pdm-backend",
+    "psychopy",
+    "distro; platform_system == \"Linux\"",
+    "tomlkit",
+    "packaging",
+    "six",  # for configobj
+    "polib", # for compiling translation files (*.po)
+    "typing-extensions",
+]
+build-backend = "pdm.backend"
+
+[tool.pdm.build]
+includes = []
+
+[tool.pdm.version]
+source = "call"
+getter = "psychopy.__init__:getVersion"
+
+[tool.distutils.bdist_wheel]
+universal = 1
+
+[tool.psychopy-docs]
+src = ["psychopy-docs"]
