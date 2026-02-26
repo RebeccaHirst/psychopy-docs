@@ -1,0 +1,127 @@
+name: build_psychopy_docs
+
+# will run in root folder devops/devops/
+# and we will create the following (which will persist until next run):
+# - ./docs/python #executable
+# - psychopy #repo
+# - devops #repo
+
+on:
+  workflow_dispatch:  # manual
+    inputs:
+      pp_branch:
+        description: 'PsychoPy branch to build docs from'
+        required: true
+        default: 'dev'
+        type: choice
+        options:
+          - dev
+          - release
+  schedule: # nightly
+    - cron: '0 0 * * *'  
+
+permissions:
+  contents: write
+
+jobs:
+
+  build_docs:
+
+    runs-on: [windows-latest]
+    defaults:
+      run:
+        shell: bash
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.10"]
+
+    steps:
+
+    - uses: actions/setup-python@v4
+      with:
+        python-version: ${{ matrix.python-version }}
+        
+    - name: Install UV
+      uses: astral-sh/setup-uv@v7
+      with:
+        activate-environment: true
+
+    - name: Checkout psychopy (manual choose branch)
+      uses: actions/checkout@v4
+      if : ${{ github.event_name == 'workflow_dispatch' }}
+      with:
+        repository: psychopy/psychopy
+        path: psychopy
+        ref: ${{ github.event.inputs.pp_branch }}
+
+    - name: Checkout psychopy (release branch) for scheduled run
+      uses: actions/checkout@v4
+      if : ${{ github.event_name == 'schedule' }}
+      with:
+        repository: psychopy/psychopy
+        path: psychopy
+        ref: release
+  
+    - name: Checkout psychopy-docs (manual choose branch)
+      uses: actions/checkout@v4
+      if : ${{ github.event_name == 'workflow_dispatch' }}
+      with:
+        repository: psychopy/psychopy
+        path: docs
+        ref: ${{ github.event.inputs.pp_branch }}
+
+    - name: Checkout psychopy-docs (release branch) for scheduled run
+      uses: actions/checkout@v4
+      if : ${{ github.event_name == 'schedule' }}
+      with:
+        repository: psychopy/psychopy-docs
+        path: docs
+        ref: release
+
+    - name: set up venv and install dependencies
+      working-directory: docs/psychopy
+      run: |
+        # workaround for dukpy
+        uv pip install git+https://gitlab.com/peircej/metapensiero.pj.git # includes fixes since last release
+        # install psychopy depends for docs (incl sphinx extensions)
+        uv pip install -e ".[building]" ".[docs]" ".[tests]" ".[suggested]" --upgrade
+    
+    - name : Update changelog, authors and alerts
+      working-directory: psychopy
+      run: |
+        cd docs
+        echo "\n Create Alerts documentation:"
+        python updateAlerts_rst.py
+
+    - name: Sphinx build html
+      working-directory: docs/psychopy
+      run: |
+        source .venv/Scripts/activate
+        cd docs
+        sphinx-build -b html source build/html
+        # then copy over the plugins.json from psychopy/plugins repo
+        curl -LO https://github.com/psychopy/plugins/raw/refs/heads/main/plugins.json
+        cp plugins.json build/html
+
+    - name: Sphinx build latex
+      working-directory: docs/psychopy
+      run: |
+        source .venv/Scripts/activate
+        cd docs
+        sphinx-build -b latex source build/latex
+
+    - name: latex2pdf
+      id: compile-latex-document
+      uses: thomas-chauvet/latex2pdf-action@v2
+      with:
+        output_dir: build
+        main_latex_file: build/latex/PsychopyManual.tex
+        ctan_packages: amsmath amsfonts lua-uni-algos
+        
+    - name: Copy pdf to html folder
+      working-directory: docs/psychopy/docs/build/latex
+      run: |
+        echo "PDF created"
+        cp build/PsychopyManual.pdf ../html/PsychoPyManual.pdf  # note the change to capital P!
+        echo "PDF copied to html folder"
