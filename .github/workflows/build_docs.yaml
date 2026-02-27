@@ -80,7 +80,7 @@ jobs:
         ref: release
 
     - name: set up venv and install dependencies
-      working-directory: docs/psychopy
+      working-directory: docs
       run: |
         ls
         # workaround for dukpy
@@ -88,7 +88,7 @@ jobs:
         # install psychopy depends for docs (incl sphinx extensions)
         uv pip install -e ".[tests]" ".[plugins]" --upgrade
     
-    - name : Update changelog, authors and alerts
+    - name : Update alerts
       working-directory: psychopy
       run: |
         cd docs
