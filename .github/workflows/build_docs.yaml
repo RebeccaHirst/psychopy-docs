@@ -1,4 +1,4 @@
-name: build_psychopy_docs
+name: Build docs (html/pdf)
 
 # will run in root folder devops/devops/
 # and we will create the following (which will persist until next run):
@@ -17,7 +17,7 @@ on:
         options:
           - dev
           - release
-  pull-request:
+  pull_request:
     branches: [release, dev]
 
 permissions:
