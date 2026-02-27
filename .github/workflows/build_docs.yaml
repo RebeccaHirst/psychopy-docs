@@ -1,4 +1,4 @@
-name: build_psychopy_docs
+name: Build docs (html/pdf)
 
 # will run in root folder devops/devops/
 # and we will create the following (which will persist until next run):
@@ -17,8 +17,8 @@ on:
         options:
           - dev
           - release
-  schedule: # nightly
-    - cron: '0 0 * * *'  
+  pull_request:
+    branches: [release, dev]
 
 permissions:
   contents: write
@@ -79,7 +79,7 @@ jobs:
         path: docs
         ref: release
 
-    - name: set up venv and install dependencies
+    - name: Install psychopy and dependencies
       working-directory: docs
       run: |
         ls
