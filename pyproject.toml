@@ -67,7 +67,6 @@ plugins = [
     "psychopy-eyetracker-gazepoint",
     "psychopy-eyetracker-eyelogic",
     "psychopy-eyetracker-sr-research",
-    "psychopy-eyetracker-eyelink",
     "psychopy-monkeys",
     "psychopy-bids",
     "psychopy-face-api",
