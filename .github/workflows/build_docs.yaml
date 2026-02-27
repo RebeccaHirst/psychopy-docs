@@ -89,17 +89,14 @@ jobs:
         uv pip install -e ".[tests]" ".[plugins]" --upgrade
     
     - name : Update alerts
-      working-directory: psychopy
+      working-directory: docs
       run: |
-        cd docs
         echo "\n Create Alerts documentation:"
         python updateAlerts_rst.py
 
     - name: Sphinx build html
       working-directory: docs
       run: |
-        source .venv/Scripts/activate
-        cd docs
         sphinx-build -b html source build/html
         # then copy over the plugins.json from psychopy/plugins repo
         curl -LO https://github.com/psychopy/plugins/raw/refs/heads/main/plugins.json
@@ -108,8 +105,6 @@ jobs:
     - name: Sphinx build latex
       working-directory: docs
       run: |
-        source .venv/Scripts/activate
-        cd docs
         sphinx-build -b latex source build/latex
 
     - name: latex2pdf
