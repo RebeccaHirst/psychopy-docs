@@ -67,7 +67,7 @@ jobs:
       uses: actions/checkout@v4
       if : ${{ github.event_name == 'workflow_dispatch' }}
       with:
-        repository: psychopy/psychopy
+        repository: psychopy/psychopy-docs
         path: docs
         ref: ${{ github.event.inputs.pp_branch }}
 
@@ -80,14 +80,15 @@ jobs:
         ref: release
 
     - name: set up venv and install dependencies
-      working-directory: docs/psychopy
+      working-directory: docs
       run: |
+        ls
         # workaround for dukpy
         uv pip install git+https://gitlab.com/peircej/metapensiero.pj.git # includes fixes since last release
         # install psychopy depends for docs (incl sphinx extensions)
-        uv pip install -e ".[building]" ".[docs]" ".[tests]" ".[suggested]" --upgrade
+        uv pip install -e ".[tests]" ".[plugins]" --upgrade
     
-    - name : Update changelog, authors and alerts
+    - name : Update alerts
       working-directory: psychopy
       run: |
         cd docs

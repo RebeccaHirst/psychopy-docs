@@ -45,7 +45,33 @@ tests = [
     "flake8",
     "xmlschema",
 ]
-
+plugins = [
+    "psychopy-cedrus",
+    "psychopy-legacy",
+    "psychopy-crs",
+    "psychopy-pixx",
+    "psychopy-bbtk",
+    "psychopy-labhackers",
+    "psychopy-iolabs",
+    "psychopy-brainproducts",
+    "psychopy-gammasci",
+    "psychopy-photoresearch",
+    "psychopy-gammminoltaasci",
+    "psychopy-mri-emulator",
+    "psychopy-qmix",
+    "psychopy-sounddevice",
+    "psychopy-visionscience",
+    "psychopy-emotiv",
+    "psychopy-eyetracker-tobii",
+    "psychopy-eyetracker-pupil-labs",
+    "psychopy-eyetracker-gazepoint",
+    "psychopy-eyetracker-eyelogic",
+    "psychopy-eyetracker-sr-research",
+    "psychopy-eyetracker-eyelink",
+    "psychopy-monkeys",
+    "psychopy-bids",
+    "psychopy-face-api",
+]
 [project.urls]
 Homepage = "https://www.psychopy.org/"
 Download = "https://github.com/psychopy/psychopy/releases/"
