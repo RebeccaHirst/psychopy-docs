@@ -56,7 +56,7 @@ plugins = [
     "psychopy-brainproducts",
     "psychopy-gammasci",
     "psychopy-photoresearch",
-    "psychopy-gammminoltaasci",
+    "psychopy-minolta",
     "psychopy-mri-emulator",
     "psychopy-qmix",
     "psychopy-sounddevice",
