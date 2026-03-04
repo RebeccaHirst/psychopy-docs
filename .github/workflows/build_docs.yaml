@@ -1,4 +1,4 @@
-name: Build docs (html/pdf)
+name: Test build of html and latex documentation
 
 # will run in root folder devops/devops/
 # and we will create the following (which will persist until next run):
