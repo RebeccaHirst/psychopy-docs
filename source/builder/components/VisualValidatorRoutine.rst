@@ -19,7 +19,7 @@ By default "Find best threshold?" and "Find sensor?" " are both set to True. Thi
 
 Recommended debugging steps for using the visual validator routine in your experiment:
 
-* Use an external piece of software to check that your computer can detect the external hardware. For example, if using Cedrus you can install `Xidon <https://cedrus.com/support/xid/xidon.htm>`_ to check that your computer can detect the device.
+* Use an external piece of software to check that your computer can detect the external hardware. For example, if using Cedrus you can install `Xidon <https://cedrus.com/support/xid/xidon.htm>`_ to check that your computer can detect the device. Remember though, that the device can only be connected to one piece of software at a time, so you will need to close Xidon before trying to set up or use your device in PsychoPy.
 * Set the threshold manually to a value that you know will work with your setup. You can do this by setting "Find best threshold?" to False and then entering a value for "Threshold". Lowering the threshold will make it more sensitive.
 
 
