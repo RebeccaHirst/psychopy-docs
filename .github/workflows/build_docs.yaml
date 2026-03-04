@@ -103,3 +103,9 @@ jobs:
       working-directory: docs
       run: |
         sphinx-build -b latex source build/latex
+
+    - name: Upload html docs as artifact
+      uses: actions/upload-artifact@v6
+      with:
+        name: psychopy-docs-html
+        path: docs/build/html
