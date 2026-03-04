@@ -98,9 +98,6 @@ jobs:
       working-directory: docs
       run: |
         sphinx-build -b html source build/html
-        # then copy over the plugins.json from psychopy/plugins repo
-        curl -LO https://github.com/psychopy/plugins/raw/refs/heads/main/plugins.json
-        cp plugins.json build/html
 
     - name: Sphinx build latex
       working-directory: docs
