@@ -1,4 +1,4 @@
-name: Build docs (html/pdf)
+name: Test build of html and latex documentation
 
 # will run in root folder devops/devops/
 # and we will create the following (which will persist until next run):
@@ -98,26 +98,8 @@ jobs:
       working-directory: docs
       run: |
         sphinx-build -b html source build/html
-        # then copy over the plugins.json from psychopy/plugins repo
-        curl -LO https://github.com/psychopy/plugins/raw/refs/heads/main/plugins.json
-        cp plugins.json build/html
 
     - name: Sphinx build latex
       working-directory: docs
       run: |
         sphinx-build -b latex source build/latex
-
-    - name: latex2pdf
-      id: compile-latex-document
-      uses: thomas-chauvet/latex2pdf-action@v2
-      with:
-        output_dir: docs/build
-        main_latex_file: docs/build/latex/PsychopyManual.tex
-        ctan_packages: amsmath amsfonts lua-uni-algos
-        
-    - name: Copy pdf to html folder
-      working-directory: docs/build/latex
-      run: |
-        echo "PDF created"
-        cp PsychopyManual.pdf ../html/PsychoPyManual.pdf  # note the change to capital P!
-        echo "PDF copied to html folder"
