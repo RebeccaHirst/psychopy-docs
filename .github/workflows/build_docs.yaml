@@ -121,3 +121,9 @@ jobs:
         echo "PDF created"
         cp PsychopyManual.pdf ../html/PsychoPyManual.pdf  # note the change to capital P!
         echo "PDF copied to html folder"
+
+    - name: Upload html docs as artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: psychopy-docs-html
+        path: docs/build/html
