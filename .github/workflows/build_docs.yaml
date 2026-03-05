@@ -49,7 +49,6 @@ jobs:
 
     - name: Checkout psychopy (manual choose branch)
       uses: actions/checkout@v4
-      if : ${{ github.event_name == 'workflow_dispatch' }}
       with:
         repository: psychopy/psychopy
         path: psychopy
@@ -65,7 +64,6 @@ jobs:
   
     - name: Checkout psychopy-docs (manual choose branch)
       uses: actions/checkout@v4
-      if : ${{ github.event_name == 'workflow_dispatch' }}
       with:
         repository: psychopy/psychopy-docs
         path: docs
