@@ -39,6 +39,7 @@ Start |PsychoPy|, and be sure to be in the Builder view.
 * Click on a Text component and a Text Properties dialog will pop up.
 
   .. image:: /images/textComponentApril24.png
+    :alt: The dialog box of the Text Component from 2024
     :width: 80%
     :align: center
 
