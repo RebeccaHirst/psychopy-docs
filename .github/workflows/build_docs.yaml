@@ -47,35 +47,31 @@ jobs:
       with:
         activate-environment: true
 
-    - name: Checkout psychopy (manual choose branch)
-      uses: actions/checkout@v4
-      with:
-        repository: psychopy/psychopy
-        path: psychopy
-        ref: ${{ github.event.inputs.pp_branch }}
+    - name: Select branch
+      run: |
+        if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
+          echo "Manual trigger for branch: ${{ github.event.inputs.pp_branch }}"
+          branch="${{ github.event.inputs.pp_branch }}"
+        else
+          echo "Scheduled trigger, using release branch"
+          branch="release"
+        fi
+        # export for other steps
+        echo "BRANCH=$branch" >> $GITHUB_ENV
 
-    - name: Checkout psychopy (release branch) for scheduled run
+    - name: Checkout psychopy
       uses: actions/checkout@v4
-      if : ${{ github.event_name == 'schedule' }}
       with:
         repository: psychopy/psychopy
         path: psychopy
-        ref: release
+        ref: ${{ env.BRANCH }}
   
-    - name: Checkout psychopy-docs (manual choose branch)
+    - name: Checkout psychopy-docs
       uses: actions/checkout@v4
       with:
         repository: psychopy/psychopy-docs
         path: docs
-        ref: ${{ github.event.inputs.pp_branch }}
-
-    - name: Checkout psychopy-docs (release branch) for scheduled run
-      uses: actions/checkout@v4
-      if : ${{ github.event_name == 'schedule' }}
-      with:
-        repository: psychopy/psychopy-docs
-        path: docs
-        ref: release
+        ref: ${{ env.BRANCH }}
 
     - name: Install psychopy and dependencies
       working-directory: docs
