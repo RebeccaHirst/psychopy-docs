@@ -80,7 +80,9 @@ jobs:
         # workaround for dukpy
         uv pip install git+https://gitlab.com/peircej/metapensiero.pj.git # includes fixes since last release
         # install psychopy depends for docs (incl sphinx extensions)
-        uv pip install -e "
+        uv pip install -e ".[tests]" ".[plugins]" --upgrade
+    
+    - name : Update alerts
       working-directory: docs
       run: |
         echo "\n Create Alerts documentation:"
