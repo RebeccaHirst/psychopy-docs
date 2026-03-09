@@ -5,6 +5,7 @@ Color spaces
 
 
 .. image:: /images/colorPicker.png
+  :alt: "A screenshot of the PsychoPy software interface, featuring two overlapping configuration windows used to define the visual properties of a polygon"
 
 *You can explore colors in PsychoPy Builder through accessing the color picker from any parameter that takes a color value.*
 
