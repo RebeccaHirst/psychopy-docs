@@ -10,6 +10,7 @@ Device Manager
 .. image:: /images/deviceManagerIcon.png
   :width: 5%
   :align: left
+  :alt: "The device manager icon"
 
 |PsychoPy| includes a Device Manager to help you set up and manage your hardware devices, such as monitors, keyboards, mice, and other input/output devices. 
 
