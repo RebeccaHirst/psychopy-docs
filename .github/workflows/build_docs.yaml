@@ -1,4 +1,4 @@
-name: Test build of html and latex documentation
+name: Build of html documentation
 
 # will run in root folder devops/devops/
 # and we will create the following (which will persist until next run):
@@ -141,6 +141,8 @@ jobs:
           # # copy the pdf to the docs/build/html
           # cp build/latex/PsychopyManual.pdf build/html/PsychoPyManual.pdf  # note the change to capital P!
           # commit all files in the docs folder (including the new pdf)
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
           git add --all
           git commit --all -m "sys: Build documentation"
       - name: Push
