@@ -108,7 +108,7 @@ jobs:
         path: docs/build
 
 
-  build_pdf:
+  publish:
     needs: build_html
     runs-on: ubuntu-latest
     if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
@@ -124,20 +124,20 @@ jobs:
         with:
           name: psychopy-docs
           path: docs/build
-      - name: latex2pdf
-        id: compile-latex-document
-        uses: thomas-chauvet/latex2pdf-action@v2
-        with:
-          output_dir: output
-          main_latex_file: PsychopyManual.tex
-          ctan_packages: amsmath amsfonts
+      # - name: latex2pdf
+      #   id: compile-latex-document
+      #   uses: thomas-chauvet/latex2pdf-action@v2
+      #   with:
+      #     output_dir: output
+      #     main_latex_file: PsychopyManual.tex
+      #     ctan_packages: amsmath amsfonts
       # push to GH-pages
       - name: Add files to a commit
         run: |
           # skip jekyll build
           echo "" > docs/build/html/.nojekyll
-          # copy the pdf to the docs/build/html
-          cp docs/build/latex/PsychopyManual.pdf docs/build/html/PsychoPyManual.pdf  # note the change to capital P!
+          # # copy the pdf to the docs/build/html
+          # cp docs/build/latex/PsychopyManual.pdf docs/build/html/PsychoPyManual.pdf  # note the change to capital P!
           # commit all files in the docs folder (including the new pdf)
           git add --all
           git commit --all -m "sys: Build documentation"
