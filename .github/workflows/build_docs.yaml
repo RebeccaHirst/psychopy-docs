@@ -19,13 +19,15 @@ on:
           - release
   pull_request:
     branches: [release, dev]
+  push:
+    branches: [release]
 
 permissions:
   contents: write
 
 jobs:
 
-  build_docs:
+  build_html:
 
     runs-on: [windows-latest]
     defaults:
@@ -98,8 +100,50 @@ jobs:
       run: |
         sphinx-build -b latex source build/latex
 
-    - name: Upload html docs as artifact
+    - name: Upload docs as artifact
+      if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
       uses: actions/upload-artifact@v6
       with:
-        name: psychopy-docs-html
-        path: docs/build/html
+        name: psychopy-docs
+        path: docs/build
+
+
+  build_pdf:
+    needs: build_html
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
+    steps:
+      - name: Checkout psychopy-docs
+        uses: actions/checkout@v4
+        with:
+          repository: psychopy/psychopy-docs
+          path: docs
+          ref: ${{ env.BRANCH }}
+      - name: fetch build artefacts
+        uses: actions/download-artifact@v6
+        with:
+          name: psychopy-docs
+          path: docs/build
+      - name: latex2pdf
+        id: compile-latex-document
+        uses: thomas-chauvet/latex2pdf-action@v2
+        with:
+          output_dir: output
+          main_latex_file: PsychopyManual.tex
+          ctan_packages: amsmath amsfonts
+      # push to GH-pages
+      - name: Add files to a commit
+        run: |
+          # skip jekyll build
+          echo "" > docs/build/html/.nojekyll
+          # copy the pdf to the docs/build/html
+          cp docs/build/latex/PsychopyManual.pdf docs/build/html/PsychoPyManual.pdf  # note the change to capital P!
+          # commit all files in the docs folder (including the new pdf)
+          git add --all
+          git commit --all -m "sys: Build documentation"
+      - name: Push
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: gh-pages
+          force: true
