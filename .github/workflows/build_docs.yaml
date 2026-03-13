@@ -95,7 +95,8 @@ jobs:
       run: |
         sphinx-build -b html source build/html
 
-    - name: Sphinx build latex
+    - name: Test Sphinx build latex
+      if: github.event_name == 'pull_request'  # for PR test if latex compiles
       working-directory: docs
       run: |
         sphinx-build -b latex source build/latex
@@ -133,11 +134,12 @@ jobs:
       #     ctan_packages: amsmath amsfonts
       # push to GH-pages
       - name: Add files to a commit
+        working-directory: docs
         run: |
           # skip jekyll build
-          echo "" > docs/build/html/.nojekyll
+          echo "" > build/html/.nojekyll
           # # copy the pdf to the docs/build/html
-          # cp docs/build/latex/PsychopyManual.pdf docs/build/html/PsychoPyManual.pdf  # note the change to capital P!
+          # cp build/latex/PsychopyManual.pdf build/html/PsychoPyManual.pdf  # note the change to capital P!
           # commit all files in the docs folder (including the new pdf)
           git add --all
           git commit --all -m "sys: Build documentation"
