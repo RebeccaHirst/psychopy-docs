@@ -124,19 +124,19 @@ jobs:
         with:
           name: psychopy-docs
           path: docs/build
-      - name: check files        
+      - name: check files   
+        working-directory: docs     
         run: |
+          echo "Files in docs:"
+          ls
           echo "Files in docs/build:"
           ls docs
-          ls docs/build
+          echo "git status:"
           git status
-      # - name: latex2pdf
-      #   id: compile-latex-document
-      #   uses: thomas-chauvet/latex2pdf-action@v2
+      # - uses: xu-cheng/latex-action@v4
       #   with:
-      #     output_dir: output
-      #     main_latex_file: PsychopyManual.tex
-      #     ctan_packages: amsmath amsfonts
+      #   root_file: |
+      #     docs/build/latex/PsychopyManual.tex
       # push to GH-pages
       - name: Add files to a commit
         working-directory: docs
