@@ -125,6 +125,12 @@ jobs:
         with:
           name: psychopy-docs
           path: docs/build
+      - name: check files        
+        run: |
+          echo "Files in docs/build:"
+          ls docs
+          ls docs/build
+          git status
       # - name: latex2pdf
       #   id: compile-latex-document
       #   uses: thomas-chauvet/latex2pdf-action@v2
