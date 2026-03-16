@@ -96,7 +96,6 @@ jobs:
         sphinx-build -b html source build/html
 
     - name: Test Sphinx build latex
-      if: github.event_name == 'pull_request'  # for PR test if latex compiles
       working-directory: docs
       run: |
         sphinx-build -b latex source build/latex
