@@ -124,7 +124,13 @@ jobs:
         uses: actions/download-artifact@v6
         with:
           name: psychopy-docs
-          path: docs/build
+          path: docs/build.tar.gz
+      - name: check files        
+        run: |
+          echo "Files in docs/build:"
+          ls docs
+          ls docs/build
+          git status
       # - name: latex2pdf
       #   id: compile-latex-document
       #   uses: thomas-chauvet/latex2pdf-action@v2
