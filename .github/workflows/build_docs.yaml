@@ -124,7 +124,7 @@ jobs:
         uses: actions/download-artifact@v6
         with:
           name: psychopy-docs
-          path: docs/build.tar.gz
+          path: docs/build
       - name: check files        
         run: |
           echo "Files in docs/build:"
