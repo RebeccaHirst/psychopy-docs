@@ -39,16 +39,24 @@ jobs:
         python-version: ["3.10"]
 
     steps:
-
+    - name: "SETUP: Checkout psychopy-docs"
+      uses: actions/checkout@v4
+      with:
+        repository: psychopy/psychopy-docs
+        ref: ${{ env.BRANCH }}
+    - name: "SETUP: Checkout psychopy"
+      uses: actions/checkout@v4
+      with:
+        repository: psychopy/psychopy
+        path: psychopy
+        ref: ${{ env.BRANCH }}
     - uses: actions/setup-python@v4
       with:
         python-version: ${{ matrix.python-version }}
-        
     - name: "SETUP: Install UV"
       uses: astral-sh/setup-uv@v7
       with:
         activate-environment: true
-
     - name: "SETUP: Select branch"
       run: |
         if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
@@ -60,46 +68,25 @@ jobs:
         fi
         # export for other steps
         echo "BRANCH=$branch" >> $GITHUB_ENV
-
-    - name: "SETUP: Checkout psychopy"
-      uses: actions/checkout@v4
-      with:
-        repository: psychopy/psychopy
-        path: psychopy
-        ref: ${{ env.BRANCH }}
-  
-    - name: "SETUP: Checkout psychopy-docs"
-      uses: actions/checkout@v4
-      with:
-        repository: psychopy/psychopy-docs
-        path: docs
-        ref: ${{ env.BRANCH }}
-
     - name: "SETUP: Install psychopy and dependencies"
-      working-directory: docs
       run: |
         ls
         # workaround for dukpy
         uv pip install git+https://gitlab.com/peircej/metapensiero.pj.git # includes fixes since last release
         # install psychopy depends for docs (incl sphinx extensions)
         uv pip install -e ".[tests]" ".[plugins]" --upgrade
-    
     - name : "SETUP: Update alerts"
-      working-directory: docs
       run: |
         echo "\n Create Alerts documentation:"
         python updateAlerts_rst.py
 
     - name: "HTML: Sphinx build html"
-      working-directory: docs
       run: |
         sphinx-build -b html source build/html
 
     - name: "PDF: Sphinx build latex"
-      working-directory: docs
       run: |
         sphinx-build -b latex source build/latex
-
     - name: "PDF: Cache Tectonic files"
       uses: actions/cache@v5
       with:
@@ -110,22 +97,20 @@ jobs:
     - name: "PDF: Set up Tectonic"
       uses: wtfjoke/setup-tectonic@v4
     - name: "PDF: Build PDF with Tectonic"
-      working-directory: docs
       run: |
         tectonic build/latex/PsychoPyManual.tex --outdir build/html
     - name: "DEBUG: Upload docs as artifact"
       uses: actions/upload-artifact@v6
       with:
         name: psychopy-docs
-        path: docs/build/html
+        path: build/html
     - name: "DEBUG: Upload PsychoPyManual.tex as artifact"
       uses: actions/upload-artifact@v6
       with:
         name: PsychoPyManual.tex
-        path: docs/build/latex/PsychoPyManual.tex
+        path: build/latex/PsychoPyManual.tex
     # Publish to gh-pages branch
     - name: "PUBLISH: Add files to a commit"
-      working-directory: docs
       run: |
         # skip jekyll build
         echo "" > build/html/.nojekyll
@@ -142,5 +127,4 @@ jobs:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         branch: gh-pages
         force: true
-        directory: docs
         
