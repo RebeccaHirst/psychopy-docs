@@ -118,7 +118,7 @@ jobs:
       with:
         name: psychopy-docs
         path: docs/build/html
-    - name: "DEBUG: Upload psychopyManual.tex as artifact"
+    - name: "DEBUG: Upload PsychoPyManual.tex as artifact"
       uses: actions/upload-artifact@v6
       with:
         name: PsychoPyManual.tex
@@ -134,7 +134,7 @@ jobs:
         # commit all files in the docs folder (including the new pdf)
         git config user.name "github-actions[bot]"
         git config user.email "github-actions[bot]@users.noreply.github.com"
-        git add build/html
+        git add -f build/html
         git commit --all -m "sys: Build documentation"
     - name: "PUBLISH: Push to gh-pages branch"
       uses: ad-m/github-push-action@master
