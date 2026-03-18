@@ -100,14 +100,15 @@ jobs:
       run: |
         sphinx-build -b latex source build/latex
 
-    - uses: actions/cache@v5
-      name: Tectonic Cache
+    - name: Cache Tectonic files
+      uses: actions/cache@v5
       with:
         path: ~/.cache/Tectonic
         key: ${{ runner.os }}-tectonic-${{ hashFiles('**/*.tex') }}
         restore-keys: |
           ${{ runner.os }}-tectonic-
-    - uses: wtfjoke/setup-tectonic@v4
+    - name: Set up Tectonic
+      uses: wtfjoke/setup-tectonic@v4
     - name: Build PDF with Tectonic
       working-directory: docs
       run: |
@@ -123,7 +124,7 @@ jobs:
         name: PsychoPyManual.tex
         path: docs/build/latex/PsychoPyManual.tex
     # Publish to gh-pages branch
-    - name: Publish: Add files to a commit
+    - name: "Publish: Add files to a commit"
       working-directory: docs
       run: |
         # skip jekyll build
