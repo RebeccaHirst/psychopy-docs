@@ -119,7 +119,7 @@ jobs:
   # Deployment job converts the artifact into a GitHub Pages deployment
   deploy:
     environment:
-      name: github-pages
+      name: gh-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     needs: build_html
