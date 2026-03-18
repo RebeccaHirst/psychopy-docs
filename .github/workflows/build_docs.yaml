@@ -138,9 +138,9 @@ jobs:
         git commit --all -m "sys: Build documentation"
     - name: "PUBLISH: Push to gh-pages branch"
       uses: ad-m/github-push-action@master
-      working-directory: docs
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         branch: gh-pages
         force: true
+        directory: docs
         
