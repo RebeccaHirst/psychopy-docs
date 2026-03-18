@@ -111,60 +111,34 @@ jobs:
     - name: Build PDF with Tectonic
       working-directory: docs
       run: |
-        tectonic build/latex/PsychopyManual.tex --outdir build/html
+        tectonic build/latex/PsychoPyManual.tex --outdir build/html
     - name: Upload docs as artifact
-      if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
       uses: actions/upload-artifact@v6
       with:
         name: psychopy-docs
         path: docs/build/html
-
-
-  publish:
-    needs: build_html
-    runs-on: ubuntu-latest
-    if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
-    steps:
-      - name: Checkout psychopy-docs
-        uses: actions/checkout@v4
-        with:
-          repository: psychopy/psychopy-docs
-          path: docs
-          ref: ${{ env.BRANCH }}
-      - name: fetch build artefacts
-        uses: actions/download-artifact@v6
-        with:
-          name: psychopy-docs
-          path: docs/build
-      - name: check files   
-        working-directory: docs     
-        run: |
-          echo "Files in docs:"
-          ls
-          echo "Files in docs/build:"
-          ls docs
-          echo "git status:"
-          git status
-      # - uses: xu-cheng/latex-action@v4
-      #   with:
-      #   root_file: |
-      #     docs/build/latex/PsychopyManual.tex
-      # push to GH-pages
-      - name: Add files to a commit
-        working-directory: docs
-        run: |
-          # skip jekyll build
-          echo "" > build/html/.nojekyll
-          # # copy the pdf to the docs/build/html
-          # cp build/latex/PsychopyManual.pdf build/html/PsychoPyManual.pdf  # note the change to capital P!
-          # commit all files in the docs folder (including the new pdf)
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add --all
-          git commit --all -m "sys: Build documentation"
-      - name: Push
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: gh-pages
-          force: true
+    - name: Upload psychopyManual.tex as artifact for debugging
+      uses: actions/upload-artifact@v6
+      with:
+        name: PsychoPyManual.tex
+        path: docs/build/latex/PsychoPyManual.tex
+    # Publish to gh-pages branch
+    - name: Publish: Add files to a commit
+      working-directory: docs
+      run: |
+        # skip jekyll build
+        echo "" > build/html/.nojekyll
+        # # copy the pdf to the docs/build/html
+        # cp build/latex/PsychopyManual.pdf build/html/PsychoPyManual.pdf  # note the change to capital P!
+        # commit all files in the docs folder (including the new pdf)
+        git config user.name "github-actions[bot]"
+        git config user.email "github-actions[bot]@users.noreply.github.com"
+        git add docs/build/html
+        git commit --all -m "sys: Build documentation"
+    - name: Publish: Push to gh-pages branch
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        branch: gh-pages
+        force: true
+        
