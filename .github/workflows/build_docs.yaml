@@ -27,7 +27,7 @@ on:
 concurrency:
   group: "pages"
   cancel-in-progress: false
-  
+
 jobs:
 
   build:
@@ -117,6 +117,7 @@ jobs:
         path: build/latex/PsychoPyManual.tex
     # upload as artefact for deployment job
     - name: Upload static files as artifact
+      if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
       id: deployment
       uses: actions/upload-pages-artifact@v3 # or specific "vX.X.X" version tag for this action
       with:
@@ -124,6 +125,7 @@ jobs:
 
   # Deployment job converts the artifact into a GitHub Pages deployment
   deploy:
+    if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
     permissions:
       contents: write
       pages: write       # Added for GitHub Pages deployment
