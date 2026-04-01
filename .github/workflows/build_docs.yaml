@@ -1,4 +1,4 @@
-name: Test build of html and latex documentation
+name: Build of html documentation
 
 # will run in root folder devops/devops/
 # and we will create the following (which will persist until next run):
@@ -12,20 +12,25 @@ on:
       pp_branch:
         description: 'PsychoPy branch to build docs from'
         required: true
-        default: 'dev'
+        default: 'release'
         type: choice
         options:
           - dev
           - release
   pull_request:
     branches: [release, dev]
+  push:
+    branches: [release]
 
-permissions:
-  contents: write
+# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
+# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
 
 jobs:
 
-  build_docs:
+  build:
 
     runs-on: [windows-latest]
     defaults:
@@ -37,17 +42,28 @@ jobs:
         python-version: ["3.10"]
 
     steps:
-
+    - name: "SETUP: Configure Pages"
+      id: pages
+      uses: actions/configure-pages@v5
+    - name: "SETUP: Checkout psychopy-docs"
+      uses: actions/checkout@v4
+      with:
+        repository: psychopy/psychopy-docs
+        ref: ${{ env.BRANCH }}
+    - name: "SETUP: Checkout psychopy"
+      uses: actions/checkout@v4
+      with:
+        repository: psychopy/psychopy
+        path: psychopy
+        ref: ${{ env.BRANCH }}
     - uses: actions/setup-python@v4
       with:
         python-version: ${{ matrix.python-version }}
-        
-    - name: Install UV
+    - name: "SETUP: Install UV"
       uses: astral-sh/setup-uv@v7
       with:
         activate-environment: true
-
-    - name: Select branch
+    - name: "SETUP: Select branch"
       run: |
         if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
           echo "Manual trigger for branch: ${{ github.event.inputs.pp_branch }}"
@@ -58,48 +74,68 @@ jobs:
         fi
         # export for other steps
         echo "BRANCH=$branch" >> $GITHUB_ENV
-
-    - name: Checkout psychopy
-      uses: actions/checkout@v4
-      with:
-        repository: psychopy/psychopy
-        path: psychopy
-        ref: ${{ env.BRANCH }}
-  
-    - name: Checkout psychopy-docs
-      uses: actions/checkout@v4
-      with:
-        repository: psychopy/psychopy-docs
-        path: docs
-        ref: ${{ env.BRANCH }}
-
-    - name: Install psychopy and dependencies
-      working-directory: docs
+    - name: "SETUP: Install psychopy and dependencies"
       run: |
         ls
         # workaround for dukpy
         uv pip install git+https://gitlab.com/peircej/metapensiero.pj.git # includes fixes since last release
         # install psychopy depends for docs (incl sphinx extensions)
         uv pip install -e ".[tests]" ".[plugins]" --upgrade
-    
-    - name : Update alerts
-      working-directory: docs
+    - name : "SETUP: Update alerts"
       run: |
         echo "\n Create Alerts documentation:"
         python updateAlerts_rst.py
 
-    - name: Sphinx build html
-      working-directory: docs
+    - name: "HTML: Sphinx build html"
       run: |
         sphinx-build -b html source build/html
 
-    - name: Sphinx build latex
-      working-directory: docs
+    - name: "PDF: Sphinx build latex"
       run: |
         sphinx-build -b latex source build/latex
-
-    - name: Upload html docs as artifact
+    - name: "PDF: Cache Tectonic files"
+      uses: actions/cache@v5
+      with:
+        path: ~/.cache/Tectonic
+        key: ${{ runner.os }}-tectonic-${{ hashFiles('**/*.tex') }}
+        restore-keys: |
+          ${{ runner.os }}-tectonic-
+    - name: "PDF: Set up Tectonic"
+      uses: wtfjoke/setup-tectonic@v4
+    - name: "PDF: Build PDF with Tectonic"
+      run: |
+        tectonic build/latex/PsychoPyManual.tex --outdir build/html
+    - name: "DEBUG: Upload docs as artifact"
       uses: actions/upload-artifact@v6
       with:
-        name: psychopy-docs-html
-        path: docs/build/html
+        name: psychopy-docs
+        path: build/html
+    - name: "DEBUG: Upload PsychoPyManual.tex as artifact"
+      uses: actions/upload-artifact@v6
+      with:
+        name: PsychoPyManual.tex
+        path: build/latex/PsychoPyManual.tex
+    # upload as artefact for deployment job
+    - name: Upload static files as artifact
+      if: github.ref_name == 'release' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
+      id: deployment
+      uses: actions/upload-pages-artifact@v3 # or specific "vX.X.X" version tag for this action
+      with:
+        path: build/html/
+
+  # Deployment job converts the artifact into a GitHub Pages deployment
+  deploy:
+    if: github.ref_name == 'release' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
+    permissions:
+      contents: write
+      pages: write       # Added for GitHub Pages deployment
+      id-token: write    # Necessary for actions/deploy-pages
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
