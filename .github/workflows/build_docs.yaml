@@ -89,6 +89,9 @@ jobs:
     - name: "HTML: Sphinx build html"
       run: |
         sphinx-build -b html source build/html
+        # then copy over the plugins.json from psychopy/plugins repo
+        curl -LO https://github.com/psychopy/plugins/raw/refs/heads/main/plugins.json
+        mv plugins.json build/html
 
     - name: "PDF: Sphinx build latex"
       run: |
