@@ -92,18 +92,22 @@ jobs:
     - name: "PDF: Sphinx build latex"
       run: |
         sphinx-build -b latex source build/latex
-    - name: "PDF: Cache Tectonic files"
-      uses: actions/cache@v5
-      with:
-        path: ~/.cache/Tectonic
-        key: ${{ runner.os }}-tectonic-${{ hashFiles('**/*.tex') }}
-        restore-keys: |
-          ${{ runner.os }}-tectonic-
+    # - name: "PDF: Cache Tectonic files"
+    #   uses: actions/cache@v5
+    #   with:
+    #     path: ~/.cache/Tectonic
+    #     key: ${{ runner.os }}-tectonic-${{ hashFiles('**/*.tex') }}
+    #     restore-keys: |
+    #       ${{ runner.os }}-tectonic-
     - name: "PDF: Set up Tectonic"
       uses: wtfjoke/setup-tectonic@v4
     - name: "PDF: Build PDF with Tectonic"
       run: |
-        tectonic build/latex/PsychoPyManual.tex --outdir build/html
+        # try building with tectonic or fetch from psychopy.org if that fails (e.g. due to missing latex packages)
+        if ! tectonic build/latex/PsychoPyManual.tex --outdir build/html; then
+          echo "Tectonic build failed, fetching pre-built PDF from psychopy.org"
+          curl -L -o build/html/PsychoPyManual.pdf https://www.psychopy.org/PsychoPyManual.pdf
+        fi
     - name: fetch plugins.json
       run: |
         curl -LO https://github.com/psychopy/plugins/raw/refs/heads/${{ github.event.inputs.pp_branch }}/plugins.json
@@ -115,6 +119,7 @@ jobs:
         path: build/html
     - name: "DEBUG: Upload PsychoPyManual.tex as artifact"
       uses: actions/upload-artifact@v6
+      if: always() # upload even if build fails, to allow debugging of build issues
       with:
         name: PsychoPyManual.tex
         path: build/latex/PsychoPyManual.tex
