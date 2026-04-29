@@ -89,10 +89,6 @@ jobs:
     - name: "HTML: Sphinx build html"
       run: |
         sphinx-build -b html source build/html
-        # then copy over the plugins.json from psychopy/plugins repo
-        curl -LO https://github.com/psychopy/plugins/raw/refs/heads/${{ github.event.inputs.pp_branch }}/plugins.json
-        mv plugins.json build/html
-
     - name: "PDF: Sphinx build latex"
       run: |
         sphinx-build -b latex source build/latex
@@ -108,6 +104,10 @@ jobs:
     - name: "PDF: Build PDF with Tectonic"
       run: |
         tectonic build/latex/PsychoPyManual.tex --outdir build/html
+    - name: fetch plugins.json
+      run: |
+        curl -LO https://github.com/psychopy/plugins/raw/refs/heads/${{ github.event.inputs.pp_branch }}/plugins.json
+        mv plugins.json build/html
     - name: "DEBUG: Upload docs as artifact"
       uses: actions/upload-artifact@v6
       with:
