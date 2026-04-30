@@ -110,9 +110,9 @@ jobs:
         fi
     - name: fetch plugins.json
       run: |
-        curl -LO https://github.com/psychopy/plugins/raw/refs/heads/${{ github.event.inputs.pp_branch }}/plugins.json
+        curl -LO https://github.com/psychopy/plugins/raw/refs/heads/main/plugins.json
         mv plugins.json build/html
-    - name: add nojekyll to docs folder
+    - name: add .nojekyll to docs folder so Actions doesn't rebuild with jekyll
       working-directory: build/html
       run: |
         touch .nojekyll
