@@ -20,6 +20,7 @@ To use a specific device in a component you can select the "Device" tab. For exa
 
 .. figure:: /images/deviceManagerSetUp.png
    :scale: 50%
+   :alt: "Add device modal on the left with sound Properties modal on the right"
 
    Screenshot of the device manager window showing a list of configured devices (left)
    and how to use a configured device in a component (right).
