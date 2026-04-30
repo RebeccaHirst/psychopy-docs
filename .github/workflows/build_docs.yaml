@@ -112,6 +112,9 @@ jobs:
       run: |
         curl -LO https://github.com/psychopy/plugins/raw/refs/heads/${{ github.event.inputs.pp_branch }}/plugins.json
         mv plugins.json build/html
+    - name: add nojekyll to docs folder
+      run: |
+        touch .nojekyll
     - name: "DEBUG: Upload docs as artifact"
       uses: actions/upload-artifact@v6
       with:
