@@ -8,7 +8,7 @@ In early 2026 we released a new version of the|PsychoPy| app, PsychoPy studio. Y
 In April, we hosted a webinar to introduce PsychoPy studio to the world, you can watch the webinar below and read the Q & A from attendees. We really hope that you will like PsychoPy studio - please download it and try it (it can be installed alongside your standalone release) please share your feedback via `the PsychoPy forum <https://discourse.psychopy.org/>`_.
 
 
-`**Watch our launch webinar on YouTube** <https://www.youtube.com/watch?v=kwkiWzwJNDs>`_.
+**`Watch our launch webinar on YouTube <https://www.youtube.com/watch?v=kwkiWzwJNDs>`_.**
 
 
 Q&A from Webinar Attendees
