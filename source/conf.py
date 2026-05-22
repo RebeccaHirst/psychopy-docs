@@ -45,6 +45,7 @@ extensions = [
   'sphinx_copybutton',
   'myst_parser',
   'redirect',
+  'sphinx_sitemap',
   'sphinxcontrib.inkscapeconverter' # part of sphinxcontrib-svg2pdfconverter
 ]
 
@@ -174,6 +175,7 @@ html_favicon = '_static/favicon.ico'
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
+html_extra_path = ['robots.txt']
 
 # If not '', a 'Last updated on:' timestamp is inserted at every page bottom,
 # using the given strftime format.
@@ -212,7 +214,7 @@ html_show_sourcelink = True
 
 # Output file base name for HTML help builder.
 htmlhelp_basename = 'PsychoPydoc'
-
+html_baseurl = 'https://psychopy.org/'
 
 # -- Options for LaTeX output --------------------------------------------------
 latex_engine = 'pdflatex'  # xelatex or pdflatex

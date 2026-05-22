@@ -34,6 +34,7 @@ dependencies = [
     "myst-parser",
     "sphinxcontrib.svg2pdfconverter",  # requires inkscape
     "psychopy-sphinx-theme",
+    "sphinx-sitemap",
 ]
 
 [project.optional-dependencies]  # This is optional dependencies
