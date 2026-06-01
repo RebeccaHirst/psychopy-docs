@@ -2,7 +2,22 @@
 Pricing
 ====================================================================
 
-|PsychoPy| *is and will always be free*, but we do offer paid-for services which allow us to keep doing what we're doing.
+PsychoPy
+------------------------------------------------
+.. grid:: 1 1 2 2
+    
+    .. grid-item-card:: |PsychoPy| is and will always be free!
+        :text-align: center
+
+        This means you can:
+
+        :octicon:`check` Build and run experiments on your local machine via `PsychoPy Studio <https://psychopy.org/download.html>`_
+
+        :octicon:`check` Program experiments in Python using the `PsychoPy library <https://pypi.org/project/psychopy/>`_
+
+        :octicon:`check` Access community support via `our forum <https://discourse.psychopy.org>`_
+
+`Thousands of researchers per month <https://usage.psychopy.org/>`_ are already using |PsychoPy| to build and run local experiments for free! 
 
 Pavlovia
 ------------------------------------------------
