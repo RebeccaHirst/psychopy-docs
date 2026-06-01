@@ -27,6 +27,12 @@ Unsure? You can `book a free one-hour demo <https://forms.clickup.com/4570406/f/
         :octicon:`check` Unlimited accounts on pavlovia.org for your institute :abbr:`i (A pavlovia.org licence allows you to have an unlimited number of researchers)`
 
         :octicon:`check` Unlimited number of experiments hosted on Pavlovia.org :abbr:`i (A pavlovia.org licence allows every researcher to host as many experiments as they like!)`
+
+        .. button-link:: https://forms.clickup.com/4570406/f/4bf96-7632/5QVSTYUIXN6Y9BY2OI
+            :color: primary
+            :align: center
+
+            Request a licence
     
     .. grid-item-card:: Licence + workshops
         :text-align: center
@@ -47,6 +53,12 @@ Unsure? You can `book a free one-hour demo <https://forms.clickup.com/4570406/f/
         :octicon:`check` 3 x 1-hour virtual workshops :abbr:`i (Your Licence manager can schedule 3 x 1 hour virtual workshops, that will be hosted on Zoom. The workshops will introduce you to the basics of how to make an experiment in PsychoPy and how to launch your study on Pavlovia.org)`
 
         :octicon:`check` Recording of workshops for departmental use :abbr:`i (A recording of the 3 x 1 hour workshops will be shared with your department to use as a teaching resource)`
+
+        .. button-link:: https://forms.clickup.com/4570406/f/4bf96-7632/5QVSTYUIXN6Y9BY2OI
+            :color: primary
+            :align: center
+
+            Request a licence
 
         +++
         **Recommended**
@@ -73,11 +85,11 @@ Unsure? You can `book a free one-hour demo <https://forms.clickup.com/4570406/f/
 
         :octicon:`check` 40 weeks of 1-hour 'PsychoPy Clinic' sessions :abbr:`i (Clinic hours will be bookable with our team on a first come first served basis. We set aside hours agreed with your Licence Manager \(e.g. every Wednesday 9 - 10am from dd/mm to dd/mm\). Hourly usage per account user will be monitored and reported to the licence manager. We reserve the right to not guarantee a solution to all issues raised within clinic sessions \(but we will always try our best to resolve most issues!\))`
 
-.. button-link:: https://forms.clickup.com/4570406/f/4bf96-7632/5QVSTYUIXN6Y9BY2OI
-    :color: primary
-    :align: center
+        .. button-link:: https://forms.clickup.com/4570406/f/4bf96-7632/5QVSTYUIXN6Y9BY2OI
+            :color: primary
+            :align: center
 
-    Request a licence
+            Request a licence
 
 `How does this compare to other similar services? <https://psychopy.org/compare>`_
 
