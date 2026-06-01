@@ -183,3 +183,29 @@ We've helped many researchers to create and debug experiments, as well as delive
     :align: center
     
     Click here to make a request for support!
+
+What our consultancy clients say
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. card-carousel:: 2
+
+    .. card::
+
+        “Becca was absolutely fantastic. She explained concepts very clearly, and was really patient when I had questions. I'll definitely be working with her again in the future!”
+
+        +++
+        **Anonymous**
+    
+    .. card::
+
+        “It has been very useful to have the creators of the product assist with task development. Dr. Hirst has been very knowledgeable, thorough, and a delight to interact with. Dr. Peirce has been very helpful when he needed to step in with advice.”
+
+        +++
+        **Anonymous**
+    
+    .. card::
+
+        “The team at PsychoPy are incredibly helpful and are very skilled in what they do. No matter the type of experiment you are trying to programme, their consultancy team can handle it (whilst teaching you along the way!) - I am particularly grateful to Becca Hirst for her amazing support with my experiment.”
+
+        +++
+        **Client from Liverpool John Moores University, UK**
