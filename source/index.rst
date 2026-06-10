@@ -1,6 +1,5 @@
 :orphan:
 :header_template: homepage
-:title: Home
 
 
 .. grid:: 1 1 1 1
@@ -41,7 +40,7 @@
 
         Lots of helpful tutorials on youtube! Click here to see
 
-Home
+Build and run experiments for free
 =========================================
 
 What users say
