@@ -240,7 +240,7 @@ We've helped many researchers to create and debug experiments, as well as delive
 
             .. grid-item-card:: Support
 
-                **£105 per hour**
+                **£140 per hour**
 
                 Our team of Scientists can help to:
 
@@ -254,7 +254,7 @@ We've helped many researchers to create and debug experiments, as well as delive
     
             .. grid-item-card:: Senior Staff Support
 
-                **£210 per hour**
+                **£280 per hour**
 
                 Sometimes your project may need time from a developer or senior staff member, these rates would apply in cases where we are:
                 
