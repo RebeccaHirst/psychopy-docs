@@ -4,8 +4,7 @@
         "Install": "/download",
         "Changelog": "/changelog"
     },
-    "Pricing": {"https://psychopy.org/pricing"
-    },
+    "Pricing": {"/pricing"},
     "Learn": {
         "Forum": "https://discourse.psychopy.org/",
         "Documentation": "/documentation",
