@@ -4,11 +4,10 @@
         "Install": "/download",
         "Changelog": "/changelog"
     },
-    "Support": {
-        "Forum": "https://discourse.psychopy.org/",
-        "Consultancy": "/consultancy"
+    "Pricing": {"https://psychopy.org/pricing"
     },
     "Learn": {
+        "Forum": "https://discourse.psychopy.org/",
         "Documentation": "/documentation",
         "Workshops": "https://workshops.psychopy.org/",
         "Teaching": "/teaching/index",
