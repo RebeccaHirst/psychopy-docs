@@ -4,7 +4,7 @@
         "Install": "/download",
         "Changelog": "/changelog"
     },
-    "Pricing": {"/pricing"},
+    "Pricing": "/pricing",
     "Learn": {
         "Forum": "https://discourse.psychopy.org/",
         "Documentation": "/documentation",
