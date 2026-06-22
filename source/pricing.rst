@@ -55,7 +55,7 @@ Unsure? You can `book a free one-hour demo <https://forms.clickup.com/4570406/f/
 
                     Request a licence
             
-            .. grid-item-card:: Licence + workshops
+            .. grid-item-card:: Standard
                 :text-align: center
                 :class-footer: recommended
                 
@@ -85,7 +85,7 @@ Unsure? You can `book a free one-hour demo <https://forms.clickup.com/4570406/f/
                 **Recommended**
                 
             
-            .. grid-item-card:: Licence + workshops + clinic
+            .. grid-item-card:: Plus
                 :text-align: center
 
                 **£5,200 annually** :abbr:`i (We offer reduced rates for emerging economies)`
@@ -138,7 +138,7 @@ Unsure? You can `book a free one-hour demo <https://forms.clickup.com/4570406/f/
 
                     Request a licence
             
-            .. grid-item-card:: Licence + workshops
+            .. grid-item-card:: Standard
                 :text-align: center
                 
                 **£4,400 annually** :abbr:`i (We offer reduced rates for emerging economies)`
@@ -163,7 +163,7 @@ Unsure? You can `book a free one-hour demo <https://forms.clickup.com/4570406/f/
 
                     Request a licence
             
-            .. grid-item-card:: Licence + workshops + clinic
+            .. grid-item-card:: Plus
                 :text-align: center
 
                 **£10,400 annually** :abbr:`i (We offer reduced rates for emerging economies)`
