@@ -190,7 +190,7 @@ Unsure? You can `book a free one-hour demo <https://forms.clickup.com/4570406/f/
 
                     Request a licence
 
-`How does this compare to other similar services? <https://psychopy.org/compare>`_
+
 
 Consultancy
 ------------------------------------------------
