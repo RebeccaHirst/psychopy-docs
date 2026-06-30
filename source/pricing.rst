@@ -26,6 +26,8 @@ Pavlovia is a secure server for hosting, sharing and running experiments online.
 
 Unsure? You can `book a free one-hour demo <https://forms.clickup.com/4570406/f/4bf96-7612/VKR8FZTODF28ICX863>`_.
 
+If you are an individual researcher and want to use Pavlovia without a licence, you can pay per participant. Credits cost £0.26 per participant and can be purchased on `the pavlovia store <https://pavlovia.org/store>`_.
+
 .. tab-set::
     :sync-group: customer
 
