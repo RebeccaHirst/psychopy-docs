@@ -88,7 +88,7 @@ Editable?
 .. _textboxcomponent-text:
 
 Text 
-    The text to be displayed
+    The text to be displayed, see :ref:`_textboxcomponent-formattingStyle` for details on formatting this text (making sections bold, italic, etc.)
     
 .. _textboxcomponent-placeholder:
 
@@ -304,7 +304,46 @@ Language style
     * RTL
     
     * Arabic
+
+.. _textboxcomponent-formattingStyle:
+
+Formatting style
+    Syntax to use for inline text formatting (bold, italic, color, etc.).
+
+    .. raw:: html
+
+        <style> .red {color:red} </style>
+
+    .. role:: red
+
+    Options:
+
+    * Markdown
+        Use `Markdown <https://www.markdownguide.org/>`_ with added syntax for color and color spaces:
+
+        * ``*italic*`` = *italic*
+        * ``**bold**`` = **bold**
+        * ``***bold italic***`` = ***bold italic***
+        * ``[color=red]named color[/color]`` = :red:`named color`
+        * ``[color=#ff0000]hex color[/color]`` = :red:`hex color`
+        * ``[color=(1, -1, -1) space=rgb]other PsychoPy color space[/color]`` = :red:`other PsychoPy color space`
+
+        To add an asterisk (``*``) without it being interpreted as italics, put a ``\`` in front of it (``\*``) to "escape" it.
     
+    * HTML (online only)
+        Use `HTML <https://www.w3schools.com/html/html_intro.asp>`_ if running online, or a limited subset of HTML if running locally:
+
+        * ``<i>italic</i>`` = *italic*
+        * ``<b>bold</b>`` = **bold**
+        * ``<i><b>bold italic</b></i>`` = ***bold italic***
+        * ``<span style="color:red">named color</span>`` = :red:`named color`
+        * ``<span style="color:#ff0000">hex color</span>`` = :red:`hex color`
+
+        When running locally, any HTML tags which aren't used (so anything inside ``<>`` characters that isn't one of the styling options described above) will be hidden, just the inner text will be shown. HTML formatting is only recommended if you are running online and need more advanced formatting options than bold, italic and color.
+    
+    * No formatting
+        Don't do any text formatting, present your text as-is (e.g. ``*some italic text*`` will appear with asterisks and without italics)
+
 .. _textboxcomponent-alignment:
 
 Alignment 
