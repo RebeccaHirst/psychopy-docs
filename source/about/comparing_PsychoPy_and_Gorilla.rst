@@ -5,6 +5,8 @@ Comparing PsychoPy with Gorilla
 
 Gorilla is a comparable experiment builder, in some ways, to PsychoPy. It's very easy to use for simple experiments. It has the added convenience that it can be used entirely online without installing any software, but it is less suitable for lab-based studies, especially where millisecond-precise timing, or external hardware, are needed. Gorilla is also considerably more expensive.
 
+PsychoPy provides the option to run the same study locally in the lab using Python, or online using JavaScript. 
+
 Flexible dynamic parameters
 ---------------------------
 
@@ -22,6 +24,7 @@ Conversely PsychoPy can generate either a web-based JavaScript study, which has 
 The timing of Gorilla (and any web-based experiments, including when you use PsychoPy in web-based studies via Pavlovia) is also less precise. Gorilla staff sometimes claim “millisecond precision” but while most JavaScript packages use a millisecond precise timer that does not equate with millisecond-precise timing. The critical issue is that web-based packages cannot very precisely detect when a screen refresh occurred or when a sound actually reached the speakers. If you measure a reaction time but don't really know when the stimulus started, then it doesn't matter how precise your timer is. For analogy, consider measuring a sprint race with a stopwatch. The stopwatch may have incredible precision, but if you hit the button with your thumb the precision is lost. See the `Timing Megastudy`_ for details of what is actually possible with online and desktop packages.
 
 .. _Timing Megastudy: https://peerj.com/articles/9414/
+
 
 Surveys
 -------

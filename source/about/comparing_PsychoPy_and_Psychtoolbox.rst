@@ -21,7 +21,7 @@ Both PsychoPy and Psychtoolbox were designed firstly for in-lab studies and can 
     
 Some people, certainly Mario Kleiner, consider timing precision to be considerably better in Psychtoolbox, but measurements of that using Blackbox Toolkit hardware in the `Timing Megastudy (Bridges et al 2020)`_ found very little difference between them for lab-based studies.
 
-PsychoPy is also unique in providing `Timing Validator` components to allow easy checking of stimulus timing during experiment execution, on relatively cheap hardware such as the Cedrus Riponda button box. This means that, even if your operating system or monitor causes timing issues that the software cannot know about, these can be automatically detected by the PsychoPy using the validator hardware.
+PsychoPy is also unique in providing `Timing Validator`_ components to allow easy checking of stimulus timing during experiment execution, on relatively cheap hardware such as the Cedrus Riponda button box. This means that, even if your operating system or monitor causes timing issues that the software cannot know about, these can be automatically detected by the PsychoPy using the validator hardware.
 
 .. _Timing Megastudy (Bridges et al 2020): https://peerj.com/articles/9414/
 .. _Timing Validator: https://psychopy.org/builder/components/VisualValidatorRoutine.html#visualvalidatorroutine
@@ -29,7 +29,7 @@ PsychoPy is also unique in providing `Timing Validator` components to allow easy
 Online studies
 ------------------
 
-PsychoPy can output its Builder-generated experiments to JavaScript and run them in a web browser. This allows you to run your experiments online, for instance using the Pavlovia.org platform. The timing of PsychoPy experiments in web browsers is not as precise as when they are run locally, and can't connect with local hardware, but is a useful option for many experiments.
+PsychoPy can output its Builder-generated experiments to JavaScript and run them in a web browser. This allows you to run your experiments online, for instance using the Pavlovia.org platform. The timing of experiments in web browsers is never going to be as precise as when they are run locally (despite what some online vendors will tell you), and can't connect with local hardware. Nonetheless online deployment is a useful option for many studies and has other advantages such as a more diverseand automated recruitment.
 
 MATLAB doesn't run in browsers and nobody has made a Psychtoolbox port for JavaScript, so Psychtoolbox isn't suitable for online studies.
 

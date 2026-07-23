@@ -14,17 +14,16 @@ jsPsych offers a range of “plugins” that allow you to create your study at t
 
 In PsychoPy the researcher gets to manipulate a more granular level, with settings for every stimulus and every response object. There are no "types" of trials (although there are some handy built-in templates) because the researcher is in control of what each routine is doing. PsychoPy stimuli support a very rich set of parameters (contrast, opacity, dimensions, orientation), all of which can be controlled independently. So, if you want multiple stimuli in your trial, just add them, as many as you like, and you can choose whether they come one after the other or one next to the other on screen. Not only that, nearly all PsychoPy parameters can also be updated not only on every trial but on every screen refresh! That means stimuli can be made to move, resize, bounce, or alter their transparency constantly, making for more dynamic interactive experiments. Unlike jsPsych, the stimuli being rendered by PsychoPy are also rendered in high-performance hardware-accelerated graphics (WebGL), which is why everything can be updated constantly, between screen refreshes.
 
-In short, in jsPsych you very quickly have to write the code to your own stimuli and you are probably limited in what can be achieved. In 
-PsychoPy, even advanced experiments can be created with very little (if any) code.
+In short, in jsPsych you largely have to write the code to your own stimuli and you are probably limited in what can be achieved. In PsychoPy, even advanced experiments can be created with very little (if any) code, and these are more easy to share and re-use because other researchers (and "future you") can see exactly what was done in the Builder interface, rather than having to read and understand a long script.
 
 Lab-based studies
 ------------------
 
 PsychoPy is a Python-based desktop app so, for local lab-based experiments, you can connect with external devices such as EEG, eye trackers, fMRI and photometers relatively easily (anything possible with python code can be done in PsychoPy). 
 jsPsych is a browser based tool so it typically cannot directly communicate with external device ports like serial ports without an additional bridge software to connect the browser and the hardware. 
-Timing is also less good in browser-based studies, because JavaScript has poorer knowledge of when the screen has refreshed, as detailed in the `Timing Megastudy (Bridges et al 2020)`_.
+Timing is also less good in browser-based studies, because JavaScript has poorer knowledge of when the screen has refreshed, as detailed in the `Timing Megastudy (Bridges et al, 2020)`_.
 
-.. _Timing Megastudy (Bridges et al 2020): https://peerj.com/articles/9414/
+.. _Timing Megastudy (Bridges et al, 2020): https://peerj.com/articles/9414/
 
 Surveys
 --------

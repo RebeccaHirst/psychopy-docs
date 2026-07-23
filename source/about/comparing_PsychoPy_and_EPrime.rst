@@ -9,19 +9,28 @@ Both applications provide a graphical user interface, where you can add code sni
 
 Both offer millisecond-precise timing and a range of stimuli, although PsychoPy has a slightly wider range and the option for stimulus updates to be every screen refresh.
 
-But the big key difference is price. PsychoPy is free and open source (despite having a professional full-time developer team) whereas E-Prime charges $995.00 for a single-user license.
+Another key difference is price. PsychoPy is free and open source, despite having a professional full-time developer team, whereas E-Prime charges $995.00 for a single-user license, and much more if you need hardware plugins.
 
 Flexible dynamic stimulus parameters
 ------------------------------------
 
-PsychoPy offers a wider range of stimuli: like drifting gratings, “brush” components for drawing inputs, random dot kinematograms, as well as the standard images and movies that E-Prime offers. 
+PsychoPy offers a wider range of stimuli: like drifting gratings, “brush” components for drawing inputs, and Random Dot Kinematograms (RDKs), as well as the standard images and movies that E-Prime offers. 
 
 PsychoPy also makes it very easy to manipulate stimulus attributes frame-by-frame within its graphical interface. You can simply set almost any parameter to update “on every frame”. If this is possible in E-Prime at all (from looking at the documentation it appears not to be!) then it would certainly be “non-trivial”.
 
 Lab-based studies
 ------------------
 
-Both PsychoPy and E-Prime were designed firstly for in-lab studies and can interact with a range of hardware including EEG, fMRI and eye tracking devices, although for E-Prime most of these devices require a plugin and incur an additional $1,995.00 charge per plugin.
+Both PsychoPy and E-Prime were designed for in-lab studies and can interact with a range of hardware including EEG, fMRI and eye tracking devices although, for E-Prime, most of these devices require a plugin and incur an additional $1,995.00 charge for each.
+
+Note also that E-Prime only runs on Windows, whereas PsychoPy runs on Windows, Mac and Linux (or any device with a browser, if you use the JavaScript/Pavlovia output option).
+
+Web-based studies
+------------------
+
+PsychoPy experiments can output either Python (for local studies) or JavaScript scripts (for web-based studies). These can run in any device with a modern browser, including Windows, Mac, Linux, iOS, Android, and ChromeOS. When PsychoPy studies run on the web, using Pavlovia.org, you send participants a link to the study, they open it in their browser and the data files are automatically sent back to your Pavlovia account. These web-based studies can also connect seamlessly to Pavlovia Surveys, for Qualtrics-style surveys and questionnaires.
+
+E-Prime is Windows-only and doesn't have a JavaScript output option, so it can't be used for browser-based studies. During the pandemic of 2020, PSTNet did introduce E-Prime Go, which allows E-Prime experiments to be compiled into self-contained apps that can be sent to participants to run on their own machines. Again, the participant must be running Windows and when the study is completed the must follow whatever instructions you give them to send the data back to you. This is a much more cumbersome process than the automatic data collection that Pavlovia provides. 
 
 Timing
 ------
@@ -29,7 +38,7 @@ Timing
 Both E-Prime and PsychoPy have excellent timing, as can be seen in the `Timing megastudy (Bridges et al, 2020)`_.
 PsychoPy is also unique in providing `Timing Validator`_ components to allow easy checking of stimulus timing during experiment execution, on relatively cheap hardware such as the Cedrus Riponda button box. This means that, even if your operating system or monitor causes timing issues that the software cannot know about, these can be automatically detected by the PsychoPy using the validator hardware.
 
-.. _Timing Megastudy (Bridges et al 2020): https://peerj.com/articles/9414/
+.. _Timing Megastudy (Bridges et al, 2020): https://peerj.com/articles/9414/
 .. _Timing Validator: https://psychopy.org/builder/components/VisualValidatorRoutine.html#visualvalidatorroutine
 
 Surveys
