@@ -76,7 +76,7 @@ Download
         
         We will continue to release new versions until PsychoPy Studio is stable enough to replace it.
 
-        .. button-link:: https://github.com/psychopy/psychopy/releases/download/2026.2.2/StandalonePsychoPy-2026.2.2-macos-3.10.dmg
+        .. button-link:: https://github.com/psychopy/psychopy/releases/download/2026.2.2/StandalonePsychoPy-2026.2.2-macos-arm64-3.11.dmg
           :color: primary
 
           PsychoPy Standalone 2026.2.2
