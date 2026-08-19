@@ -95,6 +95,7 @@ To view the version history of your experiment, log into Pavlovia.org, go to you
 
     Once you have selected "View Code", navigate to the "Commits" tab to see the version history of your experiment.
 
+.. _share-project-visibility:
 
 Sharing and project visibility
 ------------------------------
