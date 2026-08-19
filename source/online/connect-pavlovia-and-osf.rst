@@ -13,7 +13,7 @@ Why connect Pavlovia and OSF?
 
 `OSF has announced changes to its services <https://www.cos.io/blog/osf-changes-a-note-to-users>`_ that will affect how projects can be used in the future. From **16 November 2026**, users will no longer be able to create new projects or child components within existing projects. From **February 2027**, OSF projects will become read-only.
 
-OSF will continue to support important research workflows such as p**lanning, preregistration, and sharing papers and preprints**. However, one of the main gaps for researchers will be the ability to actively share and manage **experiment files, analysis scripts, datasets, and other research materials** within an OSF project.
+OSF will continue to support important research workflows such as **planning, preregistration, and sharing papers and preprints**. However, one of the main gaps for researchers will be the ability to actively share and manage **experiment files, analysis scripts, datasets, and other research materials** within an OSF project.
 
 This is where **Pavlovia** may be useful.
 
