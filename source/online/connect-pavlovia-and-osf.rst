@@ -17,7 +17,7 @@ OSF will continue to support important research workflows such as **planning, pr
 
 This is where **Pavlovia** may be useful.
 
-Pavlovia can already be used to store and share experiment files (see :ref:`share-project-visibility`), data, analysis scripts, and other files associated with a research project. What Pavlovia does not currently provide is the full range of OSF functionality around **preregistration and sharing papers/preprints with a generated DOI**.
+:ref:`Pavlovia can already be used to store and share experiment files <share-project-visibility>`.), data, analysis scripts, and other files associated with a research project. What Pavlovia does not currently provide is the full range of OSF functionality around **preregistration and sharing papers/preprints with a generated DOI**.
 
 Connecting the two services therefore provides a way to combine their strengths:
 
