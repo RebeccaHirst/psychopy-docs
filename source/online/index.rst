@@ -46,6 +46,7 @@ If you are uploading your own experiment to Pavlovia (or a template you download
    create-pavlovia-project
    test-online
    launch-and-collect-data
+   connect-pavlovia-and-osf
    cautions
 
 Useful links
